@@ -20,10 +20,8 @@
   else if(empty($gender)){ //test if user selected their gender
     echo '<p> Form Incomplete: Please go back and select your gender.</p>';
   }
-  else if(empty($time)){ //test if user selected their availability
-    echo '<p> Form Incomplete: Please go back and select your hours of availability.</p>';
-  }
-  else{ //print out welcome message if all information is entered correctly
+  else
+  { //print out welcome message if all information is entered correctly
     echo "<h1> Welcome $fname $lname!</h1>";
     echo "<h2> We're excited to have you on board!</h2>";
     echo "<p> Email Address: $email</p>";
@@ -38,7 +36,7 @@
     foreach($pref as $value){
         echo "<p>- $value </p>";
     }
-    $fp = fopen("LOG.txt", 'a'); //creates or opens LOG.txt
+    $fp = @fopen("LOG.txt", 'a'); //creates or opens LOG.txt
     if (!$fp){ //tests if LOG.txt does not exist
         echo "<p><b>Error</b> opening file. Contact admin</p>";
     }
@@ -53,5 +51,6 @@
         fclose($fp);
         echo "<p>Your information was saved.</p>";
     }
+  }
   ?>
 </body> </html>  
