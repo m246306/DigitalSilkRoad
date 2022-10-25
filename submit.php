@@ -82,13 +82,13 @@
     }
     if(file_exists('LOG.txt')!=1){ //creates a header for LOG.txt if it didn't exist previously
       $fp = fopen("LOG.txt", 'a'); 
-      $header = "First Name:\tLast Name:\tEmail:\t\t\t\tPassword:\tPhone Number:\tAge:\tExperience Level:\tPreferred Platform:\tGender:\tSailing Experinces:\t\t\t\t\t\t\t\t\t\t\tAvailability Hours:\t\t\t\t\tComments:\n";
+      $header = "First Name:\tLast Name:\tEmail:\t\t\t\tPassword:\tPhone Number:\tAge:\tGender:\tFirst Preference:\tSecond Preference:\Third Preference:\tCommerce Preferences:\t\t\t\t\t\t\t\t\t\t\tComments:\n";
       fwrite($fp, $header);
       fclose($fp);
     }
     if(file_exists('LOG.txt')){ //appends the user data to LOG.txt if it already exists
       $fp = fopen('LOG.txt', 'a'); //tabs now match up decently well in LOG.txt
-      $text = "$fname\t\t$lname\t\t$email\t$pwd\t\t\t$phone\t\t$age\t\t$level\t\t\t\t\t$platform\t\t\t\t$gender\t";
+      $text = "$fname\t\t$lname\t\t$email\t$pwd\t\t\t$phone\t\t$age\t\t\t\t$gender\t\t$prefone\t\t\t\t$preftwo\t\t\t\t$prefthree\t\t\t";
       $temp = "";
       foreach($pref as $x){
         $temp.="($x)";
