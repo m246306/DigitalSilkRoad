@@ -65,7 +65,7 @@
     echo '<p> Form Incomplete: Please go back and select your gender.</p>';
   }
   else{ //print out welcome message if all information is entered correctly
-    $pwd = str_repeat("*", strlen($pwd));
+    $pwd = password_hash($pwd, PASSWORD_DEFAULT);
     echo "<h1> Welcome $fname $lname!</h1>";
     echo "<h2> We're excited to have you on board!</h2>";
     echo "<p> Email Address: $email</p>";

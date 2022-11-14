@@ -8,7 +8,8 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!--nav bar-->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -27,15 +28,12 @@
     </div>
     <div style="float: right;">
       <ul class="navbar-nav">
-      <?php
+        <?php
         if(!session_id()) session_start(); //starts the session to use session variables
         $loggedIn = $_SESSION['loggedIn'];
         $email = $_SESSION['email'];
         if($loggedIn){ //if the user is logged in, print a unique header and execute the html
           echo('<li>
-          <a class="nav-link" style="text-align: right;" href="https://midn.cs.usna.edu/~m240930/IT350/Project1/post.php">Sell</a>
-          </li>
-          <li>
           <a class="nav-link" style="text-align: right;" href="https://midn.cs.usna.edu/~m240930/IT350/Project1/logout.php">Logout</a>
           </li>');
         }
@@ -51,51 +49,50 @@
       </ul>
     </div>
   </nav>
+      <div class="masthead" style="background-image: url('images/background.jpg');">
+        <div class="color-overlay d-flex justify-content-center align-items-center">
+          <h1>Make a Post</h1>
+        </div>
+      </div>
+      <!-- sign up form-->
+    <!-- form with action set up to the provided checker-->
+    <div class="d-flex justify-content-center">
+    <div class="row p-3 bg-dark text-white">
+    <div class="col p-3 bg-primary text-white">
+    <h2><u>Post an Item to be Sold Here</u></h2>
+    <form action="sell.php" method="post">
+      <fieldset>
+        <legend style="text-align: center;">Commerce Preferences:</legend>
 
-    <div class="container mt-3">
-      <h2>Current Users <h2>
+        <p>Trading Preference:</p> <!-- trading preferences checkboxes -->
+        <label for="sellType">How would you like to trade this item?:</label> <!-- trading preferences drop down boxes -->
+        <select name="sellType">
+          <option value="Barter">Barter</option>
+          <option value="Sell">Sell</option>
+          <option value="Both">Both</option>
+        </select>
+        </br>    
+        <p>Please provide a short description of the item:</p>
+        <textarea id="description" name="description" required></textarea><br>
+        </br>
+    </fieldset>
+    <fieldset>
+        <legend style="text-align: center;">Contact Info:</legend>
+        <label for="name">Full name:</label> <!-- Required Email Address Text Field input-->
+        <input type="text" id="name" name="name" required><br>
+        <label for="adr">Email Address:</label> <!-- Required Email Address Text Field input-->
+        <input type="text" id="adr" name="adr" required><br>
+        </br>
+        <label for="number">Phone Number:</label> <!-- Phone Number Text Field input-->
+        <input type="text" id="number" name="number" required><br>
+        </br>
+        <label for="comments">Additional Comments:</label><br> <!-- additional comments textarea box -->
+        <textarea id="comments" name="comments"></textarea><br>
+      </fieldset>
       
-        <!--PHP start-->
-        <?php
-        //open file
-        echo '<table class="table text-white">
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th> First Preference</th>
-          <th>Profile</th>
-        </tr>';
-
-        $fp = @fopen("LOG.txt", 'r');
-
-        if(!$fp)
-        {
-          $content ="<p> ERROR! Could not open file for reading.</p>";
-        }
-        else
-        {
-          //get the first line
-          $line = fgets($fp);
-          $lineExploded = array();
-          //print on loop until empty. 
-          echo "<tbody>";
-          while($line = fgets($fp))
-          {
-            $lineExploded = explode('	', $line);
-            //print with table format
-            //print_r ($lineExploded);
-            echo "<tr>";
-            echo "<td>" . $lineExploded[0] . "</td>" .
-                  "<td>" . $lineExploded[2]. "</td>" .
-                  "<td>" . $lineExploded[16] . "</td>" .
-                  "<td><a href='https://midn.cs.usna.edu/~m240930/IT350/Project1/createProfile.php?email=<?php echo $lineExploded[4] ?>'>User Profile</a></td>"; //this also doesn't work properly
-                  //"<td><a href='https://midn.cs.usna.edu/~m240930/IT350/Project1/createProfile.php?email=" . $lineExploded[3] . "'>Add Friend</a></td>"; --> implement this
-            echo "</tr>";
-          }
-          echo "</tbody>";
-        }
-        ?>
-      </table>
+      <input type="submit" value="Submit"> <input type="reset" value="Clear"><br> <!-- submission and reset buttons -->
+    </form>
+      </div>
     </div>
+  </div>
 </body>
-</html>
